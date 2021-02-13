@@ -1,7 +1,8 @@
-package com.bsrakdg.musicplayer
+package com.bsrakdg.musicplayer.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bsrakdg.musicplayer.R
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

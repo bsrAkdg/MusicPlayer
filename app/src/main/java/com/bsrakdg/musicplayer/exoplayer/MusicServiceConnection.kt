@@ -14,6 +14,9 @@ import com.bsrakdg.musicplayer.other.Event
 import com.bsrakdg.musicplayer.other.Resource
 import com.bsrakdg.musicplayer.other.Status
 
+/**
+ * Communicate with ViewModel and Service
+ */
 class MusicServiceConnection(
     context: Context
 ) {
@@ -27,8 +30,8 @@ class MusicServiceConnection(
     private val _playbackState = MutableLiveData<PlaybackStateCompat?>()
     val playbackState: LiveData<PlaybackStateCompat?> = _playbackState
 
-    private val _curPlayingSong = MutableLiveData<MediaMetadataCompat>()
-    val curPlayingSong: LiveData<MediaMetadataCompat> = _curPlayingSong
+    private val _curPlayingSong = MutableLiveData<MediaMetadataCompat?>()
+    val curPlayingSong: LiveData<MediaMetadataCompat?> = _curPlayingSong
 
     lateinit var mediaController: MediaControllerCompat
 

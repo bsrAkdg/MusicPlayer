@@ -67,7 +67,7 @@ class FirebaseMusicSource
             .setIconUri(song.description.iconUri)
             .build()
         MediaBrowserCompat.MediaItem(desc, FLAG_PLAYABLE)
-    }
+    }.toMutableList()
 
     // When we download our data from fireStore then this usually takes a little bit of time.
     // So we somehow need a mechanism to check when the source or a music source all of our songs

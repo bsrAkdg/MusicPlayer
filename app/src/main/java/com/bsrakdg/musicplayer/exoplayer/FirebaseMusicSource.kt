@@ -90,7 +90,7 @@ class FirebaseMusicSource
         }
 
     // Return boolean that music source is ready or not
-    private fun whenReady(action: (Boolean) -> Unit): Boolean {
+    fun whenReady(action: (Boolean) -> Unit): Boolean {
         return if (state == STATE_CREATED || state == STATE_INITIALIZING) {
             // not ready so add list
             onReadyListeners += action

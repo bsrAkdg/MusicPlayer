@@ -1,6 +1,7 @@
 package com.bsrakdg.musicplayer.di
 
 import android.content.Context
+import com.bsrakdg.musicplayer.data.remote.MusicDatabase
 import com.bsrakdg.musicplayer.other.Constants
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -17,6 +18,10 @@ import dagger.hilt.android.scopes.ServiceScoped
 @Module
 @InstallIn(ServiceComponent::class)
 object ServiceModule {
+
+    @ServiceScoped
+    @Provides
+    fun provideMusicDatabase() = MusicDatabase()
 
     @ServiceScoped
     @Provides

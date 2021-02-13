@@ -1,6 +1,7 @@
 package com.bsrakdg.musicplayer.di
 
 import android.content.Context
+import com.bsrakdg.musicplayer.other.Constants
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
@@ -40,6 +41,6 @@ object ServiceModule {
         @ApplicationContext context: Context,
     ) = DefaultDataSourceFactory(
         context,
-        Util.getUserAgent(context, "Music Player App")
+        Util.getUserAgent(context, Constants.USER_AGENT)
     )
 }

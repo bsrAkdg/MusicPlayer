@@ -29,7 +29,7 @@ class MusicService : MediaBrowserServiceCompat() {
     // don't use main thread to play music
     private val serviceJob = Job()
     // cancellation job
-    private val serviceScope = CoroutineScope(Dispatchers.Main + serviceJob) // merge these two together
+    private val serviceScope = CoroutineScope(Dispatchers.Main + serviceJob) // merge these two together for cancelling service scope
 
     // Allows interaction with media controllers, volume keys, media buttons, and transport controls.
     private lateinit var mediaSession : MediaSessionCompat

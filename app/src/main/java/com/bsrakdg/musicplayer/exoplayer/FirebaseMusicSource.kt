@@ -21,7 +21,7 @@ class FirebaseMusicSource {
                 synchronized(onReadyListeners) {
                     field = value
                     onReadyListeners.forEach { listener ->
-                        listener(state == STATE_INITIALIZED) // music source successfully
+                        listener(state == STATE_INITIALIZED) // return true when music downloading is successfully
                     }
                 }
             } else {
@@ -32,7 +32,7 @@ class FirebaseMusicSource {
     // Return boolean that music source is ready or not
     private fun whenReady(action : (Boolean) -> Unit) : Boolean {
         return if (state == STATE_CREATED || state == STATE_INITIALIZING) {
-            // not ready add list
+            // not ready so add list
             onReadyListeners += action
             false
         } else {

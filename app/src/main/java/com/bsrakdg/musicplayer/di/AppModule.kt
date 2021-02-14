@@ -2,6 +2,7 @@ package com.bsrakdg.musicplayer.di
 
 import android.content.Context
 import com.bsrakdg.musicplayer.R
+import com.bsrakdg.musicplayer.adapters.SwipeSongAdapter
 import com.bsrakdg.musicplayer.exoplayer.MusicServiceConnection
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -25,6 +26,10 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideSwipeSongAdapter() = SwipeSongAdapter()
+
+    @Singleton
+    @Provides
     fun provideGlideInstance(
         @ApplicationContext context: Context
     ) = Glide.with(context).setDefaultRequestOptions(
@@ -34,5 +39,4 @@ object AppModule {
             .diskCacheStrategy(DiskCacheStrategy.DATA)
 
     )
-
 }

@@ -1,14 +1,16 @@
 package com.bsrakdg.musicplayer.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bsrakdg.musicplayer.data.entities.Song
-import com.bsrakdg.musicplayer.databinding.ListItemBinding
 
-abstract class BaseSongAdapter :
+abstract class BaseSongAdapter(
+    private val layoutId: Int
+) :
     ListAdapter<Song, BaseSongAdapter.SongViewHolder>(SongDiffCallback()) {
 
     class SongDiffCallback : DiffUtil.ItemCallback<Song>() {
@@ -21,18 +23,17 @@ abstract class BaseSongAdapter :
         }
     }
 
-    inner class SongViewHolder(private val binding: ListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class SongViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun onBind(song: Song) {
-            onBind(binding, song)
+            onBind(view, song)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         return SongViewHolder(
-            ListItemBinding.inflate(
-                LayoutInflater.from(parent.context),
+            LayoutInflater.from(parent.context).inflate(
+                layoutId,
                 parent,
                 false
             )
@@ -49,5 +50,5 @@ abstract class BaseSongAdapter :
         onItemClickListener = listener
     }
 
-    abstract fun onBind(binding: ListItemBinding, song: Song)
+    abstract fun onBind(view: View, song: Song)
 }

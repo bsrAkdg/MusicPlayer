@@ -111,7 +111,6 @@ class MusicService : MediaBrowserServiceCompat() {
 
         musicPlayerEventListener = MusicPlayerEventListener(this)
         exoPlayer.addListener(musicPlayerEventListener)
-
         musicNotificationManager.showNotification(exoPlayer)
     }
 

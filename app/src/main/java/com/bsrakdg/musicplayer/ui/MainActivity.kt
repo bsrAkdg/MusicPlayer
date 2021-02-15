@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bsrakdg.musicplayer.R
 import com.bsrakdg.musicplayer.adapters.SwipeSongAdapter
@@ -57,6 +59,38 @@ class MainActivity : AppCompatActivity() {
             curPlayingSong?.let { song ->
                 mainViewModel.playOrToggleSong(song, true)
             }
+        }
+
+        val navController = findNavController(R.id.navHostFragment)
+
+        swipeSongAdapter.setItemClickListener {
+            navController.navigate(
+                R.id.globalActionToSongFragment
+            )
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.songFragment -> hideBottomBar()
+                R.id.homeFragment -> showBottomBar()
+                else -> showBottomBar()
+            }
+        }
+    }
+
+    private fun hideBottomBar() {
+        binding.apply {
+            ivCurSongImage.isVisible = false
+            vpSong.isVisible = false
+            ivPlayPause.isVisible = false
+        }
+    }
+
+    private fun showBottomBar() {
+        binding.apply {
+            ivCurSongImage.isVisible = true
+            vpSong.isVisible = true
+            ivPlayPause.isVisible = true
         }
     }
 

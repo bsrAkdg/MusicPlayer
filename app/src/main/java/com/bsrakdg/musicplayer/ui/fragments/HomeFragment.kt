@@ -21,11 +21,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject
     lateinit var songAdapter: SongAdapter
 
-    private lateinit var binding: FragmentHomeBinding
+    // memory leak
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentHomeBinding.bind(view)
+        _binding = FragmentHomeBinding.bind(view)
         setupRecyclerView()
         subscribeToObservers()
 
@@ -55,5 +57,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rvAllSongs.adapter = null
+        _binding = null
     }
 }
